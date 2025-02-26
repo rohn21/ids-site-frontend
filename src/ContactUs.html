@@ -1,0 +1,153 @@
+{% set title = 'Form Layout' %}
+{% set filename = 'form-layout.html' %}
+
+{% extends 'src/layouts/horizontal.html' %}
+{% block content %}
+
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Contact Us</h3>
+
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Basic Horizontal form layout section start -->
+    <section >
+        <div class="row match-height">
+            <div class="col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Please fill up the details</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form id="contact" class="form form-horizontal">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="first-name-horizontal">First Name</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text" id="first_name" class="form-control"
+                                                   name="fname"
+                                                   placeholder="name">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="last-name-horizontal">Last Name</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text" id="last_name" class="form-control"
+                                                   name="lname"
+                                                   placeholder="surname">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="email-horizontal">Email</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="email" id="email" class="form-control"
+                                                   name="email-id"
+                                                   placeholder="email">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="contact-info-horizontal">Mobile</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <input type="text" id="mobile_number" class="form-control"
+                                                   name="contact"
+                                                   placeholder="mobile no">
+                                        </div>
+                                        <!-- <div class="col-md-4">
+                                            <label for="role-horizontal">Role</label>
+                                        </div> 
+                                        <div class="col-md-8 form-group">
+                                            <fieldset class="form-group">
+                                                <select class="form-select" id="role">
+                                                    <option>individual</option>
+                                                    <option>agency</option>
+
+                                                </select>
+                                            </fieldset>
+                                        </div> -->
+                                        <div class="col-md-4">
+                                            <label for="ps">Message</label>
+                                        </div>
+                                        <div class="col-md-8 form-group">
+                                            <textarea class="form-control"
+                                                      id="message"
+                                                      rows="3"></textarea>
+                                        </div>
+
+                                        <div class="card-content">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4">
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                            <button type="reset"
+                                                    class="btn btn-light-secondary me-1 mb-1">Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+
+        document.getElementById("contact").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const formData = {
+            first_name: document.getElementById("first_name").value,
+            last_name: document.getElementById("last_name").value,
+            email: document.getElementById("email").value,
+            mobile_number: document.getElementById("mobile_number").value,
+            message: document.getElementById("message").value,
+        };
+
+        try {
+            const response = await fetch("/api/app/contact-us/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("Message sent successfully!");
+                contactForm.reset();
+            } else {
+                console.error("Error: " + (data.error || "Unable to send message."));
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            console.log("An error occurred. Please try again.");
+        }
+    });
+    </script>
+
+{% endblock %}

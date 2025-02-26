@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Menu",
+    "isTitle": true
+  },
+  {
+    "name": "Dashboard",
+    "url": "index.html",
+    "icon": "grid-fill"
+  },
+ 
+  {
+    "name": "Authentication",
+    "key": "auth",
+    "icon": "person-badge-fill",
+    "submenu": [
+      {
+        "name": "Login",
+        "url": "auth-login.html"
+      },
+      {
+        "name": "Register",
+        "url": "auth-register.html"
+      },
+      {
+        "name": "Forgot Password",
+        "url": "auth-forgot-password.html"
+      }
+    ]
+  }
+]

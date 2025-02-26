@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{{ title }} - {{ web_title }}</title>
+    <link rel="stylesheet" href="assets/scss/app.scss">
+    <link rel="stylesheet" href="assets/scss/themes/dark/app-dark.scss">
+    <link rel="stylesheet" href="assets/scss/pages/auth.scss">
+    <link rel="shortcut icon" href="assets/static/images/logo/favicon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/static/images/logo/favicon.png" type="image/png">
+</head>
+
+<body>
+    <script src="assets/static/js/initTheme.js"></script>
+    <div id="auth">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.getElementById("login-form").addEventListener("submit", async function (event) {
+         event.preventDefault();
+     
+         const email = document.getElementById("email").value;
+         const password = document.getElementById("password").value;
+     
+         const response = await fetch("http://127.0.0.1:8000/api/auth/login/", {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json"
+             },
+             body: JSON.stringify({ email, password })
+         });
+     
+         const data = await response.json();
+     
+         if (response.ok) {
+             localStorage.setItem("access_token", data.access);
+             localStorage.setItem("refresh_token", data.refresh);
+             console.log("Successful login!!!!")
+             window.location.href = "horizontal.html"; // Redirect on successful login
+         } else {
+             alert("Login failed: " + (data.detail || "Invalid credentials"));
+         }
+     });
+     </script>
+    <!-- <script>
+
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+        
+    const csrfToken = getCookie('csrftoken');
+    console.log(csrfToken)
+
+            document.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            const data = {
+                email: email,
+                password:password
+            }
+
+            fetch('/api/auth/login/',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // 'X-CSRFToken': getCookie('csrftoken'),
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                    credentials: 'include',
+                })
+                    .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    alert('Login successful!');
+                    // Handle login success, e.g., redirect to the dashboard
+                } else {
+                    alert('Login failed: ' + data.message);
+                    // Handle login failure, e.g., show error message
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('An error occurred during login.');
+            });
+            
+            const response_data = response.json();
+            console.log(response_data);
+        });
+    </script> -->
+</body>
+
+</html>

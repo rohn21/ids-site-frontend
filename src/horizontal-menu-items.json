@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Dashboard",
+    "url": "index.html",
+    "icon": "grid-fill"
+  },
+  {
+    "name": "Authentication",
+    "key": "auth",
+    "icon": "person-badge-fill",
+    "submenu": [
+      {
+        "name": "Login",
+        "url": "login.html"
+      },
+      {
+        "name": "Register",
+        "url": "layouts/authentication/register.html"
+      },
+      {
+        "name": "Forgot Password",
+        "url": "auth-forgot-password.html"
+      }
+    ]
+  },
+  {
+    "name": "Contact-us",
+    "url": "ContactUs.html"
+  },
+  {
+    "name": "About-us",
+    "url": "AboutUs.html"
+  }
+]

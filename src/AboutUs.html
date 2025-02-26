@@ -1,0 +1,52 @@
+{% set title = 'Form Layout' %}
+{% set filename = 'form-layout.html' %}
+
+{% extends 'src/layouts/horizontal.html' %}
+{% block content %}
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>About Us</h3>
+
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Form Layout</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Basic Horizontal form layout section start -->
+   <section style="padding-left: 250px;padding-right: 350px; ">
+       <div >
+        <div class="card ">
+            <div class="card-header">
+                <h4 class="card-title">Objective</h4>
+            </div>
+            <div class="card-body">
+                <p>The system aims to provide comprehensive protection by detecting intrusions, vulnerabilities, and misconfigurations across web, system, and network environments in real time. It focuses on offering automated scanning and immediate threat mitigation to ensure timely responses and reduce potential risks. By delivering actionable insights and ensuring continuous monitoring, the system enhances overall security, proactively addressing emerging threats while minimizing manual intervention and errors.</p>
+
+
+            </div>
+        </div></div>
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Our Mission</h4>
+            </div>
+            <div class="card-body">
+                <p>
+                   Our mission is to provide advanced threat detection and response solutions that empower organizations to stay ahead of cybercriminals. We aim to minimize security risks, reduce downtime, and ensure compliance with industry standards through our state-of-the-art IDS technology.
+
+
+                </p>
+
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
