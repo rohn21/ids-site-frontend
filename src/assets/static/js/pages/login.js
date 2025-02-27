@@ -39,9 +39,10 @@ numberRadio.addEventListener("change", function() {
 });
 
 // otp
-function sendOTP(){
-    console.log("button clicked!!!!");
-  document.getElementById("otpSection").style.display = "block";
+function sendOTP() {
+  console.log("button clicked!!!!");
+  document.getElementById("forgotPasswordForm").style.display = "none"; // Hide the forgot password form
+  document.getElementById("otpForm").style.display = "flex"; // Show the OTP section
 }
 
 // handle-otp start
