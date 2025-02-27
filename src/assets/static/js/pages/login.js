@@ -45,6 +45,59 @@ function sendOTP() {
   document.getElementById("otpForm").style.display = "flex"; // Show the OTP section
 }
 
+// otp-timer
+let countdown = 10; // Set the countdown duration in seconds
+let timer;
+let resendEnabled = false;
+
+function startTimer() {
+    document.getElementById('timer').textContent = `Time left: ${countdown} seconds`;
+    document.getElementById('resendBtn').style.display = 'none'; 
+    document.getElementById('submitBtn').disabled = false;
+    timer = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    const timerElement = document.getElementById('timer');
+    const submitButton = document.getElementById('submitBtn');
+    
+    if (countdown > 0) {
+        countdown--;
+        timerElement.textContent = `Time left: ${countdown} seconds`;
+    } else {
+        timerElement.textContent = 'Time expired!';
+        document.getElementById('resendBtn').style.display = 'block'; 
+        resendEnabled = true;
+        document.getElementById('submitBtn').disabled = true;
+        clearInterval(timer);
+    }
+    if (submitButton.disabled) {
+      console.log("Submit button is disabled.");
+    } else {
+      console.log("Submit button is enabled.");
+    }
+}
+
+// Start the timer when the OTP form is shown
+document.getElementById("sendOTPBtn").addEventListener("click", function() {
+    startTimer();
+});
+
+document.getElementById("resendBtn").addEventListener("click", function() {
+    if (resendEnabled) {
+        document.getElementById("resendMessage").textContent = "OTP resent successfully!";
+        countdown = 60; // Reset countdown
+        startTimer();
+        document.getElementById('submitBtn').disabled = false;
+        this.style.display = 'none'; // Hide the resend button again
+
+        setTimeout(function() {
+          document.getElementById("resendMessage").textContent = "";
+      }, 5000);
+    }
+});
+
+
 // handle-otp start
 // document.getElementById("submitOtpBtn").addEventListener("click", async function() {
 //   const otpValue = document.getElementById("otpInput").value;

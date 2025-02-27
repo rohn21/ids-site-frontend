@@ -110,7 +110,7 @@
 				display: inline-block;
 				align-items: center;
 				background: var(--gray);
-				padding: 0.9rem 3rem;
+				padding: 0.9rem 2.8rem; 
 				border-radius: .5rem;
 				cursor: pointer;
 				transition: 0.3s;
