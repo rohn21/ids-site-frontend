@@ -5,6 +5,8 @@
     <title>Login</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 	<link rel="stylesheet" href="assets/scss/pages/login.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
 <body>
 
@@ -36,7 +38,7 @@
 							<input type="password" placeholder="Confirm password">
 						</div>
 
-						<button>
+						<button id="signUpBtn">
 							Sign up
 						</button>
 						<p>
@@ -58,12 +60,17 @@
 					<div class="form sign-in">
 						<div class="input-group">
 							<i class='bx bxs-user'></i>
-							<input type="text" id="identifier" 	placeholder="username">
+							<input type="text" id="identifier" 	placeholder="Username">
 							<i class='bx bxs-lock-alt' ></i>
-							<input type="password" style="margin-top: 9px;" id="password" placeholder="password">
+							<input type="password" style="margin-top: 9px;" id="password" placeholder="Password">
+					
+							<!-- captcha -->
+							<div id="captcha" class=""></div>
+							<input type="text" id="captchaInput" placeholder="Enter Captcha">
+							<i class="bi bi-arrow-clockwise" onclick="refreshCaptcha()"></i>
+							<!-- <b><a class="pointer" id="resendBtn" onclick="refreshCaptcha()">Refresh Captcha</a></b> -->
 						</div>
 						
-
 						<p id="error" style="color: red;"></p>
 						<button onclick="showOTP()" id="verifyBtn">
 							Login
@@ -92,7 +99,7 @@
 							<i class='bx bxs-user'></i>
 							<input type="number" placeholder="Phone Number">
 						</div>
-						<p id="error" style="color: red;"></p>
+						<p id="field_error" style="color: red;"></p>
 						<button id="sendOTPBtn" onclick="sendOTP()">
 							Send OTP
 						</button>
@@ -163,17 +170,28 @@
 		<!-- END CONTENT SECTION -->
 </div>
 <script src="assets/static/js/pages/login.js"></script>
+<script src="assets/static/js/pages/captcha.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
         document.getElementById("verifyBtn").addEventListener("click", async function () {
             const identifier = document.getElementById("identifier").value;
             const password = document.getElementById("password").value;
+			const captchaInput = document.getElementById("captchaInput").value;
+    		const storedCaptcha = localStorage.getItem("captcha");
             const errorElement = document.getElementById("error");
 
             if (!identifier || !password) {
                 errorElement.textContent = "Please enter both username and password.";
                 return;
             }
+
+			if (captchaInput !== storedCaptcha) {
+				errorElement.textContent = "Invalid captcha.";
+				return;
+   			}
+
 
             errorElement.textContent = ""; 
 
@@ -193,10 +211,10 @@
                 console.log("Access Token:", access);
                 console.log("Refresh Token:", refresh);
 
-                alert("Login successful!");
+                // alert("Login successful!");
 
                 // Optionally, redirect after successful login
-                // window.location.href = "/dashboard.html";
+                window.location.href = "/index.html";
             } catch (error) {
                 // Handle errors from Axios
                 if (error.response) {

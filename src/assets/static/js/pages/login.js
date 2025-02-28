@@ -43,6 +43,25 @@ function sendOTP() {
   console.log("button clicked!!!!");
   document.getElementById("forgotPasswordForm").style.display = "none"; // Hide the forgot password form
   document.getElementById("otpForm").style.display = "flex"; // Show the OTP section
+
+  // const phoneNumberInput = document.querySelector('.input-group input[type="number"]');
+  // const emailInput = document.querySelector('.input-group input[type="email"]');
+  // const errorElement = document.getElementById("field_error");
+    
+  //   if (emailInput && emailInput.value.trim() !== "") {
+  //       console.log("Email entered. Sending OTP...");
+
+  //       document.getElementById("otpForm").style.display = "flex";
+  //       errorElement.textContent = "";
+  //   } else if (phoneNumberInput && phoneNumberInput.value.trim() !== "") {
+  //       console.log("Phone number entered. Sending OTP...");
+
+  //       document.getElementById("otpForm").style.display = "flex";
+  //       errorElement.textContent = "";
+  //   } else {
+  //       console.log("field cannnot be empty");
+  //       errorElement.textContent = "Please enter an email or phone number.";
+  //   }
 }
 
 // otp-timer
@@ -132,7 +151,7 @@ document.getElementById("resendBtn").addEventListener("click", function() {
 // signup.js
 // Listen for the click event on the "Sign Up" button
 document.getElementById("signUpBtn").addEventListener("click", async function (e) {
-  e.preventDefault(); // Prevent default form submission
+  e.preventDefault(); 
 
 
   const username = document.getElementById("username").value.trim();
