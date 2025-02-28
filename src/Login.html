@@ -8,6 +8,29 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </head>
+<style>
+	.captcha-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px; /* Adjust spacing */
+}
+
+#captcha {
+	width: 90%;
+    margin-right: 10px; /* Adjust spacing */
+	border: 2px solid #EFEFEF;
+	border-radius: 7px;
+}
+
+#captchaInput {
+    margin-right: 10px; /* Adjust spacing */
+}
+
+.bi.bi-arrow-clockwise {
+    cursor: pointer; /* Change cursor on hover */
+}
+
+</style>
 <body>
 
 <div id="container" class="container">
@@ -63,13 +86,22 @@
 							<input type="text" id="identifier" 	placeholder="Username">
 							<i class='bx bxs-lock-alt' ></i>
 							<input type="password" style="margin-top: 9px;" id="password" placeholder="Password">
-					
-							<!-- captcha -->
-							<div id="captcha" class=""></div>
-							<input type="text" id="captchaInput" placeholder="Enter Captcha">
-							<i class="bi bi-arrow-clockwise" onclick="refreshCaptcha()"></i>
-							<!-- <b><a class="pointer" id="resendBtn" onclick="refreshCaptcha()">Refresh Captcha</a></b> -->
 						</div>
+							<!-- captcha -->
+								<div class="captcha-container">
+									<div id="captcha" ></div>
+									
+									<i class="bi bi-arrow-clockwise" onclick="refreshCaptcha()"></i>
+								</div>
+								<div class="input-group"><input type="text" id="captchaInput" placeholder="Enter Captcha"></div>
+							
+							<!-- UPDATED -->
+
+							<!-- <div id="captcha" class=""></div>
+							<input type="text" id="captchaInput" placeholder="Enter Captcha">
+							<i class="bi bi-arrow-clockwise" onclick="refreshCaptcha()"></i> -->
+							<!-- <b><a class="pointer" id="resendBtn" onclick="refreshCaptcha()">Refresh Captcha</a></b> -->
+						
 						
 						<p id="error" style="color: red;"></p>
 						<button onclick="showOTP()" id="verifyBtn">
