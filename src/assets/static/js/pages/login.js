@@ -52,11 +52,15 @@ function sendOTP() {
     if (emailRadio.checked && currentEmailInput && currentEmailInput.value.trim() !== "") {
         console.log("Email entered. Sending OTP...");
         document.getElementById("otpForm").style.display = "flex";
+        document.getElementById("forgotPasswordForm").style.display = "none"; 
+        startTimer();
         errorElement.textContent = "";
     } else if (numberRadio.checked && currentPhoneNumberInput && currentPhoneNumberInput.value.trim() !== "") {
         console.log("Phone number entered. Sending OTP...");
         document.getElementById("otpForm").style.display = "flex";
+        document.getElementById("forgotPasswordForm").style.display = "none";
         errorElement.textContent = "";
+        startTimer();
     } else {
         console.log("field cannnot be empty");
         errorElement.textContent = "Please enter an email or phone number.";
@@ -143,12 +147,6 @@ function updateTimer() {
       console.log("Submit button is enabled.");
     }
 }
-
-// Start the timer when the OTP form is shown
-document.getElementById("sendOTPBtn").addEventListener("click", function() {
-  document.getElementById("forgotPasswordForm").style.display = "none";  // will replace forgotPasswordForm with otpForm
-    startTimer();
-});
 
 document.getElementById("resendBtn").addEventListener("click", function() {
     if (resendEnabled) {
