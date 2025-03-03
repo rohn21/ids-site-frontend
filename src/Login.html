@@ -129,7 +129,7 @@
 						</div>
 						<div class="input-group">
 							<i class='bx bxs-user'></i>
-							<input type="number" placeholder="Phone Number">
+							<input type="number" id="inputField" placeholder="Phone Number">
 						</div>
 						<p id="field_error" style="color: red;"></p>
 						<button id="sendOTPBtn" onclick="sendOTP()">
@@ -229,24 +229,30 @@
 
             try {
                 const response = await axios.post("http://127.0.0.1:8000/api/auth/login/", {
-                    username: identifier, // Change to 'username' if needed
+                    username: identifier, 
                     password: password,
                 });
+				console.log(response.data)
+				console.log(response.data.user.mobile_number)
+				console.log(response.data.user.is_superuser)
+
 
                 // Extract JWT tokens
-                const { access, refresh } = response.data;
+                const { access_token, refresh_token } = response.data;
 
                 // Store tokens in localStorage
-                localStorage.setItem("accessToken", access);
-                localStorage.setItem("refreshToken", refresh);
+                localStorage.setItem("access_token", access_token);
+                localStorage.setItem("refresh_token", refresh_token);
 
-                console.log("Access Token:", access);
-                console.log("Refresh Token:", refresh);
-
-                // alert("Login successful!");
-
-                // Optionally, redirect after successful login
-                window.location.href = "/index.html";
+                console.log("Access Token:", access_token);
+                console.log("Refresh Token:", refresh_token);
+				
+				if (response.data.user.is_superuser){
+					window.location.href = "/admin-index.html";
+				}
+                else {
+					window.location.href = "/index.html";
+				}
             } catch (error) {
                 // Handle errors from Axios
                 if (error.response) {

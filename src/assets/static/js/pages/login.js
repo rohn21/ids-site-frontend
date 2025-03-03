@@ -21,6 +21,7 @@ const forgotPasswordForm = document.querySelector('.forgot-password-form');
 const emailRadio = forgotPasswordForm.querySelector('input[id="email"]');
 const numberRadio = forgotPasswordForm.querySelector('input[id="number"]');
 const phoneNumberInput = forgotPasswordForm.querySelector('.input-group input[type="number"]');
+const emailInput = forgotPasswordForm.querySelector('.input-group input[type="email"]');
 
 emailRadio.addEventListener("change", function() {
   const inputGroup = forgotPasswordForm.querySelector('.input-group');
@@ -28,6 +29,7 @@ emailRadio.addEventListener("change", function() {
       <i class='bx bxs-envelope'></i>
       <input type="email" placeholder="Email">
   `;
+  emailInput = forgotPasswordForm.querySelector('.input-group input[type="email"]'); 
 });
 
 numberRadio.addEventListener("change", function() {
@@ -36,33 +38,78 @@ numberRadio.addEventListener("change", function() {
       <i class='bx bxs-user'></i>
       <input type="number" placeholder="Phone Number">
   `;
+  phoneNumberInput = forgotPasswordForm.querySelector('.input-group input[type="number"]');
 });
 
 // otp
 function sendOTP() {
   console.log("button clicked!!!!");
-  document.getElementById("forgotPasswordForm").style.display = "none"; // Hide the forgot password form
-  document.getElementById("otpForm").style.display = "flex"; // Show the OTP section
-
-  // const phoneNumberInput = document.querySelector('.input-group input[type="number"]');
-  // const emailInput = document.querySelector('.input-group input[type="email"]');
-  // const errorElement = document.getElementById("field_error");
+  
+  const errorElement = document.getElementById("field_error");
+  const currentEmailInput = forgotPasswordForm.querySelector('.input-group input[type="email"]');
+  const currentPhoneNumberInput = forgotPasswordForm.querySelector('.input-group input[type="number"]');
     
-  //   if (emailInput && emailInput.value.trim() !== "") {
-  //       console.log("Email entered. Sending OTP...");
-
-  //       document.getElementById("otpForm").style.display = "flex";
-  //       errorElement.textContent = "";
-  //   } else if (phoneNumberInput && phoneNumberInput.value.trim() !== "") {
-  //       console.log("Phone number entered. Sending OTP...");
-
-  //       document.getElementById("otpForm").style.display = "flex";
-  //       errorElement.textContent = "";
-  //   } else {
-  //       console.log("field cannnot be empty");
-  //       errorElement.textContent = "Please enter an email or phone number.";
-  //   }
+    if (emailRadio.checked && currentEmailInput && currentEmailInput.value.trim() !== "") {
+        console.log("Email entered. Sending OTP...");
+        document.getElementById("otpForm").style.display = "flex";
+        errorElement.textContent = "";
+    } else if (numberRadio.checked && currentPhoneNumberInput && currentPhoneNumberInput.value.trim() !== "") {
+        console.log("Phone number entered. Sending OTP...");
+        document.getElementById("otpForm").style.display = "flex";
+        errorElement.textContent = "";
+    } else {
+        console.log("field cannnot be empty");
+        errorElement.textContent = "Please enter an email or phone number.";
+    }
 }
+
+
+// const forgotPasswordForm = document.querySelector('.forgot-password-form');
+// const emailRadio = forgotPasswordForm.querySelector('input[id="email"]');
+// const numberRadio = forgotPasswordForm.querySelector('input[id="number"]');
+// const phoneNumberInput = forgotPasswordForm.querySelector('.input-group input[type="number"]');
+
+// emailRadio.addEventListener("change", function() {
+//   const inputGroup = forgotPasswordForm.querySelector('.input-group');
+//   inputGroup.innerHTML = `
+//       <i class='bx bxs-envelope'></i>
+//       <input type="email" placeholder="Email">
+//   `;
+// });
+
+// numberRadio.addEventListener("change", function() {
+//   const inputGroup = forgotPasswordForm.querySelector('.input-group');
+//   inputGroup.innerHTML = `
+//       <i class='bx bxs-user'></i>
+//       <input type="number" placeholder="Phone Number">
+//   `;
+// });
+
+// // otp
+// function sendOTP() {
+//   console.log("button clicked!!!!");
+//   // document.getElementById("forgotPasswordForm").style.display = "none"; // Hide the forgot password form
+//   // document.getElementById("otpForm").style.display = "flex"; // Show the OTP section
+
+//   const phoneNumberInput = document.querySelector('.input-group input[type="number"]');
+//   const emailInput = document.querySelector('.input-group input[type="email"]');
+//   const errorElement = document.getElementById("field_error");
+    
+//     if (emailInput && emailInput.value.trim() !== "") {
+//         console.log("Email entered. Sending OTP...");
+
+//         document.getElementById("otpForm").style.display = "flex";
+//         errorElement.textContent = "";
+//     } else if (phoneNumberInput && phoneNumberInput.value.trim() !== "") {
+//         console.log("Phone number entered. Sending OTP...");
+
+//         document.getElementById("otpForm").style.display = "flex";
+//         errorElement.textContent = "";
+//     } else {
+//         console.log("field cannnot be empty");
+//         errorElement.textContent = "Please enter an email or phone number.";
+//     }
+// }
 
 // otp-timer
 let countdown = 10; // Set the countdown duration in seconds
@@ -99,6 +146,7 @@ function updateTimer() {
 
 // Start the timer when the OTP form is shown
 document.getElementById("sendOTPBtn").addEventListener("click", function() {
+  document.getElementById("forgotPasswordForm").style.display = "none";  // will replace forgotPasswordForm with otpForm
     startTimer();
 });
 
