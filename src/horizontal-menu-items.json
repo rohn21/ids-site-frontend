@@ -16,11 +16,8 @@
       {
         "name": "Register",
         "url": "layouts/authentication/register.html"
-      },
-      {
-        "name": "Forgot Password",
-        "url": "auth-forgot-password.html"
       }
+     
     ]
   },
   {
