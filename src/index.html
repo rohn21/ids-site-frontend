@@ -1,4 +1,4 @@
-{% set title = 'Dashboard' %}
+{% set title = 'User Dashboard' %}
 {% set filename = 'index.html' %}
 
 {% extends 'src/layouts/horizontal.html' %} <!-- changed from master.html -->
@@ -364,6 +364,11 @@
     </section>
 </div>
 {% endblock %}
+<script>
+    if (response.data.user.is_authenticated && response.data.user.role != 'admin') {
+		window.location.href = "/error-403.html";
+	}
+</script>
 {% block js %}
 <!-- Need: Apexcharts -->
 <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
