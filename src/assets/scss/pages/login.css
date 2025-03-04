@@ -339,6 +339,32 @@
                 right: 50%;
             }
 
+            .captcha-container {
+                display: flex;
+                align-items: center;
+                margin-top: 10px; /* Adjust spacing */
+            }
+            
+            #captcha {
+                width: 90%;
+                margin-right: 10px; /* Adjust spacing */
+                border: 2px solid #EFEFEF;
+                border-radius: 7px;
+            }
+            
+            #captchaInput {
+                margin-right: 10px; /* Adjust spacing */
+            }
+            
+            .bi.bi-arrow-clockwise {
+                cursor: pointer; /* Change cursor on hover */
+            }
+
+            #submitBtn:disabled {
+                background-color: #757575;
+                cursor: not-allowed; 
+            }
+
             /* RESPONSIVE */
 
             @media only screen and (max-width: 425px) {

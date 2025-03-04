@@ -142,8 +142,10 @@ function updateTimer() {
         clearInterval(timer);
     }
     if (submitButton.disabled) {
+        submitButton.classList.add("disabled-style");
       console.log("Submit button is disabled.");
     } else {
+      submitButton.classList.remove("disabled-style");
       console.log("Submit button is enabled.");
     }
 }
