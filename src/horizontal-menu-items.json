@@ -15,7 +15,7 @@
       },
       {
         "name": "Register",
-        "url": "layouts/authentication/register.html"
+        "url": "user-login.html"
       }
      
     ]
