@@ -129,7 +129,7 @@
         };
 
         try {
-            const response = await fetch("/api/app/contact-us/", {
+            const response = await fetch("/api/auth/contact-us/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),

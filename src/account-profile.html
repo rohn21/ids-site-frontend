@@ -35,8 +35,8 @@
                             </div>
                             <input type="file" id="profile-image-upload" accept="image/png, image/jpg, image/jpeg" style="display: none;" />
 
-                            <h3 id="profile-name" class="mt-3">John Doe</h3>
-                            <p id="profile-job" class="text-small">Junior Software Engineer</p>
+                            <!-- <h3 id="profile-name" class="mt-3">John Doe</h3>
+                            <p id="profile-job" class="text-small">Junior Software Engineer</p> -->
                         </div>
                     </div>
                 </div>
@@ -108,8 +108,8 @@
                 const avatarImage = document.getElementById('avatar-img');
                 avatarImage.src = profileData.profile_pic;
 
-                document.getElementById('profile-name').innerText = profileData.user.username || 'John Doe';
-                document.getElementById('profile-job').innerText = profileData.user || 'Junior Software Engineer';
+                // document.getElementById('profile-name').innerText = profileData.user.username || 'John Doe';
+                // document.getElementById('profile-job').innerText = profileData.user || 'Junior Software Engineer';
 
                 const userDetails = document.getElementById('user-details');
                 userDetails.innerHTML = `
