@@ -57,7 +57,7 @@
                                 </thead>
                                 <tbody id="user-details">
                                     <!-- Data will be populated here dynamically -->
-                                </tbody>
+                                </tbody>    
                             </table>
                         </div>
                     </div>
@@ -97,6 +97,7 @@
             };
 
             const response = await axios.get('/api/auth/user/profile/', config); 
+            const userNameElement = document.getElementById('user-name');
 
             if (response.status === 200) {
 
@@ -107,7 +108,8 @@
 
                 const avatarImage = document.getElementById('avatar-img');
                 avatarImage.src = profileData.profile_pic;
-
+                userNameElement.textContent = profileData.user.username || 'Guest';
+                // userNameElement.textContent = profileData.username || 'Guest';
                 // document.getElementById('profile-name').innerText = profileData.user.username || 'John Doe';
                 // document.getElementById('profile-job').innerText = profileData.user || 'Junior Software Engineer';
 
@@ -120,7 +122,7 @@
                     <tr>
                         <td class="text-bold-500">Email</td>
                         <td class="text-bold-500" id="email-value">${profileData.user.email}</td>
-                        <td class="text-bold-500">${profileData.is_email_verified ? 'Verified' : 'Not Verified'}</td>
+                        <td class="text-bold-500"><span class="badge bg-light-danger">${profileData.is_email_verified ? 'Verified' : 'Not Verified'}</span></td>
                     </tr>
                     <tr>
                         <td class="text-bold-500">Phone Number</td>
