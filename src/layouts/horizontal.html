@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="text">
                                         <h6 id="user-name" class="user-dropdown-name">username</h6>
-                                        <!-- <p class="user-dropdown-status text-sm text-muted">Member</p> -->
+
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
@@ -41,11 +41,11 @@
                                 </ul>
                             </div>
 
-                            <!-- Burger button responsive -->
+                             <!-- Burger button responsive  -->
                             <a href="#" class="burger-btn d-block d-xl-none">
                                 <i class="bi bi-justify fs-3"></i>
                             </a>
-                        </div>
+                        </div> 
                     </div>
                 </div>
                 <nav class="main-navbar">
@@ -83,17 +83,41 @@
                                                     {% endfor %}
                                                 </ul>
                                                 {% endif %}
-                                            </li>
+                                            </li>   
                                             {% if (loop.index % maxSubmenuItemY == 0) or (loop.last) %}
                                         </ul>
+                                        
                                         {% endif %}
+                                        
                                         {% endfor %}
                                     </div>
+                                   
                                 </div>{% endif %}
                             </li>
                             {% endif %}
                             {% endfor %}
-                        </ul>
+                            
+                                <!-- <div class="header-top-right">
+                                    <div class="dropdown">
+                                        <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div class="avatar avatar-md2" >
+                                                <img id="avatar-img" src="assets/static/images/faces/profile.jpg" alt="Avatar">
+                                            </div>
+                                            <div class="text">
+                                                <h6 id="user-name" class="user-dropdown-name">username</h6>
+                                            </div>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
+                                          <li><a class="dropdown-item" href="account-profile.html">My Account</a></li>
+                                          <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                                        </ul>
+                                    </div>
+    
+                                    <a href="#" class="burger-btn d-block d-xl-none">
+                                        <i class="bi bi-justify fs-3"></i>
+                                    </a>
+                                </div> -->
+                    </ul>
                     </div>
                 </nav>
 

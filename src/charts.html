@@ -1,0 +1,15 @@
+{% set title = 'Form Layout' %}
+{% set filename = 'form-layout.html' %}
+
+{% extends 'src/layouts/horizontal.html' %}
+{% block content %}
+<h2>Scan Statistics Dashboard</h2>
+  <div id="bar"></div>
+  <div id="line"></div>
+  <div id="area"></div>
+  <div id="radialGradient"></div>
+{% endblock %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script type="module" src="assets/static/js/pages/charts.js"></script>
+{% endblock %}

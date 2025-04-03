@@ -17,8 +17,16 @@
         "name": "Register",
         "url": "user-login.html"
       }
-     
+
     ]
+  },
+  {
+    "name": "Vulnerability",
+    "url": "vulnerability_scan.html"
+  },
+  {
+    "name": "Intrusion",
+    "url": "intrusion_detection.html"
   },
   {
     "name": "Contact-us",

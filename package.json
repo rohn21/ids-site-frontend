@@ -60,6 +60,7 @@
     "perfect-scrollbar": "^1.5.5",
     "quill": "^2.0.3",
     "rater-js": "^1.0.1",
+    "react-router-dom": "^6.30.0",
     "rtlcss": "^4.0.0",
     "simple-datatables": "^4.0.8",
     "summernote": "^0.9.1",
