@@ -35,6 +35,7 @@ function initTheme() {
   //Detect if the user set his preferred color scheme to dark
   if (!window.matchMedia) {
     return
+    // return setTheme("light");
   }
 
   //Media query to detect dark preference
@@ -47,19 +48,19 @@ function initTheme() {
   return setTheme(mediaQuery.matches ? "dark" : "light", true)
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const toggler = document.getElementById("toggle-dark")
-  const theme = localStorage.getItem(THEME_KEY)
+// window.addEventListener('DOMContentLoaded', () => {
+//   const toggler = document.getElementById("toggle-dark")
+//   const theme = localStorage.getItem(THEME_KEY)
 
-  if(toggler) {
-    toggler.checked = theme === "dark"
+//   if(toggler) {
+//     toggler.checked = theme === "dark"
     
-    toggler.addEventListener("input", (e) => {
-      setTheme(e.target.checked ? "dark" : "light", true)
-    })
-  }
+//     toggler.addEventListener("input", (e) => {
+//       setTheme(e.target.checked ? "dark" : "light", true)
+//     })
+//   }
 
-});
+// });
 
 initTheme()
 
