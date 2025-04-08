@@ -1,0 +1,41 @@
+{% set title = 'Intrusion Detection' %}
+{% set filename = 'intrusion_charts.html' %}
+
+{% extends 'src/layouts/horizontal.html' %}
+{% block content %}
+<div class="page-content">
+    <section class="row">
+        <div class="col-12 col-xl-12">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>URL Inspection</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="barChart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9 col-xl-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Scan results</h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="pieChart"></div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script type="module" src="assets/static/js/pages/incpection-charts.js"></script>
+{% endblock %}

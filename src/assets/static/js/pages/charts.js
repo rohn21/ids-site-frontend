@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async function () {
  * @returns {Promise<Object>} - The chart data.
  */
 async function fetchChartData(accessToken) {
-  const response = await fetch("http://127.0.0.1:8000/api/app/chart-data/", {
+  const response = await fetch("http://127.0.0.1:8000/api/vulnerability_scanner/chart-data/", {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${accessToken}`,
