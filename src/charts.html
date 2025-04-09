@@ -3,12 +3,14 @@
 
 {% extends 'src/layouts/horizontal.html' %}
 {% block content %}
-<!-- <h2>Scan Statistics Dashboard</h2> -->
+<h2>Scan Statistics Dashboard</h2>
+<div id="vulnerabilityChart"></div>
+
   <!-- <div id="barChart"></div> -->
   <!-- <div id="line"></div> -->
   <!-- <div id="pieChart"></div> -->
   <!-- <div id="radialGradient"></div> -->
-<section class="row">
+<!-- <section class="row">
     <div class="col-12 col-lg-12">
         <div class="row">
             <div class="col-9">
@@ -36,10 +38,11 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 {% endblock %}
 {% block js %}
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 <script type="module" src="assets/static/js/pages/incpection-charts.js"></script>
 <!-- <script type="module" src="assets/static/js/pages/charts.js"></script> -->
 {% endblock %}

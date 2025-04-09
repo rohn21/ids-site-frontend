@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             // Send POST request to the backend API
-            const response = await fetch("http://127.0.0.1:8000/api/app/intrusion-net/scan/", {
+            const response = await fetch("http://127.0.0.1:8000/api/intrusion-net/url-scan/", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${access_token}`,

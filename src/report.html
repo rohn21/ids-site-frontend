@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packet Data Report</title>
+  <link rel="stylesheet" href="report.css" />
+
+  <!-- jsPDF Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2 id="page-title">All URL Inspection Reports</h2>
+
+    <div id="status"></div>
+
+    <div id="intrusion-table-wrapper"></div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button id="prev-page">Previous</button>
+      <span id="page-info">Page 1</span>
+      <button id="next-page">Next</button>
+    </div>
+  </div>
+
+  <script src="report.js"></script>
+</body>
+</html>

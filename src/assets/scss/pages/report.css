@@ -1,0 +1,127 @@
+/* General Layout */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fbfd;
+  margin: 0;
+  padding: 20px;
+  color: #2c3e50;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Page Title */
+#page-title {
+  text-align: center;
+  color: #2d3436;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Status Message */
+#status {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #d63031;
+}
+
+/* Table Styles */
+.inspection-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 10px;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.inspection-table th,
+.inspection-table td {
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.inspection-table th {
+  background-color: #dff9fb;
+  color: #2c3e50;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.inspection-table tr:nth-child(even) {
+  background-color: #f4f6f7;
+}
+
+.inspection-table tr:hover {
+  background-color: #e8f6f3;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Button Styles */
+button,
+button.download-btn {
+  background-color: #74b9ff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover,
+button.download-btn:hover {
+  background-color: #0984e3;
+}
+
+/* Pagination */
+.pagination-controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+#page-info {
+  font-weight: bold;
+  font-size: 15px;
+  color: #2d3436;
+}
+
+/* Table Wrapper */
+#intrusion-table-wrapper {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .inspection-table th,
+  .inspection-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  #page-title {
+    font-size: 22px;
+  }
+}
