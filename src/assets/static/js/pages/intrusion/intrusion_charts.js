@@ -100,9 +100,9 @@ fetch(API_URL, {
     const fileInspection = processChartData(data.file_inspection, 'status', 'date');
 
     // Updated Chart Titles
-    renderChart("#port-scan-bar", "Port Scan (Bar)", "bar", urlScan);
-    renderChart("#url-inspection-bar", "Virus Scan (Bar)", "bar", urlInspection);
-    renderChart("#file-inspection-bar", "Malware Detection (Bar)", "bar", fileInspection);
+    renderChart("#port-scan-bar", "Port Scan", "bar", urlScan);
+    renderChart("#url-inspection-bar", "Virus Scan", "bar", urlInspection);
+    renderChart("#file-inspection-bar", "Malware Detection", "bar", fileInspection);
 
     const urlScanGrouped = groupByStatus(data.url_scan, 'intruder_status');
     const urlInspectGrouped = groupByStatus(data.url_inspection, 'status');
@@ -124,7 +124,7 @@ fetch(API_URL, {
       }
     ];
 
-    renderChart("#combined-line-chart", "Combined Scan Status", "line", {
+    renderChart("#combined-line-chart", "Overall Scan Status", "line", {
       categories,
       series: combinedSeries
     });

@@ -16,7 +16,7 @@
     <section class="row">
         <div class="col-12 col-lg-12">
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <div class="card">
                         <div class="card-header chart-grid">
                             <!-- <h4>Vulnerability</h4> -->
@@ -24,6 +24,16 @@
                         <div class="card-body ">
                             <div id="port-scan-bar"></div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <div class="card d-flex">
+                      <div class="card-header">
+                        <h4>Intrusion Ratio</h4>
+                      </div>
+                      <div class="card-body">
+                        <div id="radialGradient"></div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -58,22 +68,24 @@
                             <div id="combined-line-chart"></div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-xl-6">
-                    <div class="card d-flex">
-                      <div class="card-header">
-                        <h4>Intrusion Ratio</h4>
-                      </div>
-                      <div class="card-body">
-                        <div id="radialGradient"></div>
-                      </div>
-                    </div>
-                  </div>
-                  
+                </div>                  
             </div>
         </div>
     </section>
 </div>
+<script>
+    window.onload = function () {
+        const accessToken = localStorage.getItem("access_token");
+        console.log(accessToken);
+
+        // If no access token, redirect to login page
+        if (!accessToken) {
+            window.location.href = "/login.html"; // Update with your actual login page path
+        } else {
+            fetchProfile(); // Load user data if authenticated
+        }
+    };
+</script>
 {% endblock %}
 <script>
     if (response.data.user.is_authenticated && response.data.user.role != 'admin') {
