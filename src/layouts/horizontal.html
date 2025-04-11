@@ -100,7 +100,7 @@
                         <div class="dropdown">
                             <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="avatar avatar-md2" >
-                                    <img id="avatar-img" src="assets/static/images/faces/profile.jpg" alt="Avatar">
+                                    <img id="avatar-img" src="./assets/static/images/faces/profile.jpg" alt="Avatar">
                                 </div>
                                 <div class="text">
                                     <h6 id="user-name" class="user-dropdown-name">username</h6>
@@ -135,7 +135,7 @@
     <script src="assets/compiled/js/app.js"></script>
     {% endif %}
     {% block js %}{% endblock %}
+    {% include '../partials/footer.html' %}
 </body>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<!-- <script src="assets/static/js/pages/account_profile.js"></script> -->
 </html>

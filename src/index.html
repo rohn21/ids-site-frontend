@@ -18,11 +18,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4>Vulnerability</h4>
+                        <div class="card-header chart-grid">
+                            <!-- <h4>Vulnerability</h4> -->
                         </div>
-                        <div class="card-body">
-                            <div id="line"></div>
+                        <div class="card-body ">
+                            <div id="port-scan-bar"></div>
                         </div>
                     </div>
                 </div>
@@ -30,82 +30,48 @@
             <div class="row">
                 <div class="col-12 col-xl-6">
                     <div class="card">
-                        <div class="card-header">
-                            <h4>Scan results</h4>
+                        <div class="card-header chart-grid">
+                            <!-- <h4>Scan results</h4> -->
                         </div>
                         <div class="card-body">
-                            <div id="area"></div>
+                            <div id="url-inspection-bar"></div>
                         </div>
                         
                     </div> 
                 </div>
                 <div class="col-12 col-xl-6">
                     <div class="card d-flex">
-                        <div class="card-header">
-                            <h4>Vulnerability Ratio</h4>
+                        <div class="card-header chart-grid">
+                            <!-- <h4>Vulnerability Ratio</h4> -->
                         </div>
                         <div class="card-body">
-                            <div id="radialGradient"></div>
-                        </div>
-                        
+                            <div id="file-inspection-bar"></div>
+                        </div> 
                     </div>
                 </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header chart-grid">
+                            <!-- <h4>Vulnerability</h4> -->
+                        </div>
+                        <div class="card-body ">
+                            <div id="combined-line-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <div class="card d-flex">
+                      <div class="card-header">
+                        <h4>Intrusion Ratio</h4>
+                      </div>
+                      <div class="card-body">
+                        <div id="radialGradient"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
             </div>
         </div>
-        <!-- <div class="col-12 col-lg-3">
-            <div class="card">
-                
-                <a href=""><div class="card-body py-4 px-4">
-                    <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl">
-                            <img src="assets/static/images/faces/2.jpg" alt="Face 1">
-                        </div>
-                        <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
-                        </div>
-                    </div>
-                </div></a>
-
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h4>Recent Messages</h4>
-                </div>
-                <div class="card-content pb-4">
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/static/images/faces/4.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/static/images/faces/5.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">@imdean</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/static/images/faces/1.jpg">
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="px-4">
-                        <button class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>Start Conversation</button>
-                    </div>
-                </div>
-            </div> 
-        </div> -->
     </section>
 </div>
 {% endblock %}
@@ -121,55 +87,7 @@
 <script src="assets/static/js/pages/ui-chartjs.js"></script>
 <script src="assets/extensions/chart.js/chart.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="assets/static/js/pages/charts.js"></script>
-<script>
-    async function fetchProfile() {
-    try {
-        
-        const access_token = localStorage.getItem("access_token")
-        console.log(access_token)
-
-
-        const config = {
-            headers: {
-                Authorization: `Bearer ${access_token}`
-            }
-        };
-
-        const response = await axios.get('/api/auth/profile/', config); 
-        const avatarImage = document.getElementById('avatar-img');
-        const userNameElement = document.getElementById('user-name');
-
-        if (response.status === 200) {
-            const profileData = response.data;
-            console.log(profileData.profile_pic);
-            console.log("profile image ");
-
-            if (avatarImage && userNameElement) {
-                try {
-                
-                    const access = localStorage.getItem("access_token")
-                    console.log(access)
-                    const response = await axios.get('/api/auth/user/profile/', config);
-                    const profileData = response.data;
-
-                    // Set profile picture and username
-                    avatarImage.src = profileData.profile_pic || '/assets/static/images/default-avatar.jpg';
-                    console.log(profileData.profile_pic);
-                    userNameElement.textContent = profileData.user.username || 'Guest';
-                    console.log(profileData.username);
-                } catch (error) {
-                    console.error("Error fetching profile data:", error);
-                }
-    } else {
-        console.error("Elements not found in DOM.");
-    }
-        } else {
-            console.error('Error fetching profile data');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-</script>
+<!-- <script src="assets/static/js/pages/charts.js"></script> -->
+<script src="assets/static/js/pages/intrusion/intrusion_charts.js"></script>
+<script src="assets/static/js/pages/dashboard_profile.js"></script>
 {% endblock %}

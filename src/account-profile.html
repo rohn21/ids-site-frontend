@@ -4,6 +4,7 @@
 {% extends 'src/layouts/horizontal.html' %}
 {% block style %}
 <link href="https://cdn.jsdelivr.net/npm/filepond/dist/filepond.min.css" rel="stylesheet" />
+
 {% endblock%}
 {% block content %}
 <div class="page-heading">
@@ -30,11 +31,11 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-center align-items-center flex-column">
                             <div class="avatar avatar-2xl">
-                                <img id="avatar-img" src="assets/static/images/faces/profile.jpg" alt="Avatar">
-                                <i class="bi bi-pencil"></i>
+                                <img id="profile-avatar-img" src="" alt="Avatar">
+                                <i class="bi bi-pencil" id="edit-profile-image"></i>
                             </div>
                             <input type="file" id="profile-image-upload" accept="image/png, image/jpg, image/jpeg" style="display: none;" />
-
+                            <button id="submit-profile-image" class="btn btn-primary mt-3" style="display: none;">Upload Image</button>
                             <!-- <h3 id="profile-name" class="mt-3">John Doe</h3>
                             <p id="profile-job" class="text-small">Junior Software Engineer</p> -->
                         </div>
@@ -67,13 +68,17 @@
     </section>
 </div>
 {% endblock %}
-
+{% block styles %}
+<link rel="stylesheet" href="assets/extensions/filepond/filepond.css">
+<link rel="stylesheet" href="assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css">
+<link rel="stylesheet" href="assets/extensions/toastify-js/src/toastify.css">
+{% endblock %}
 {% block js %}
 <!-- Axios CDN -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<!-- file_upload -->
-<script src="https://cdn.jsdelivr.net/npm/filepond/dist/filepond.min.js"></script>
-<script>
+<script src="assets/static/js/pages/account_profile.js"></script>
+
+<!-- <script>
 
     let isEditing = false;
     // Function to fetch user profile details
@@ -90,7 +95,7 @@
                 }
             };
 
-            const response = await axios.get('/api/auth/user/profile/', config); 
+            const response = await axios.get('http://localhost:8000/api/auth/user/profile/', config); 
             const userNameElement = document.getElementById('user-name');
 
             if (response.status === 200) {
@@ -103,10 +108,7 @@
                 const avatarImage = document.getElementById('avatar-img');
                 avatarImage.src = profileData.profile_pic;
                 userNameElement.textContent = profileData.user.username || 'Guest';
-                // userNameElement.textContent = profileData.username || 'Guest';
-                // document.getElementById('profile-name').innerText = profileData.user.username || 'John Doe';
-                // document.getElementById('profile-job').innerText = profileData.user || 'Junior Software Engineer';
-
+               
                 const userDetails = document.getElementById('user-details');
                 userDetails.innerHTML = `
                     <tr>
@@ -131,6 +133,7 @@
         }
     }
 
+
     function toggleEditMode() {
         if (isEditing) {
             // Save changes and stop editing
@@ -148,6 +151,7 @@
             isEditing = false;
 
             document.getElementById('profile-image-upload').style.display = 'none';
+            document.getElementById('submit-profile-image').style.display = 'none'; 
         } else {
             // Turn on edit mode
             const username = document.getElementById('username-value').innerText;
@@ -174,8 +178,69 @@
             isEditing = true;
 
             document.getElementById('profile-image-upload').style.display = 'block';
+            document.getElementById('submit-profile-image').style.display = 'none'; 
         }
     }
+
+       // Show the "Upload Image" button when a file is selected
+    document.getElementById('profile-image-upload').addEventListener('change', () => {
+        if (document.getElementById('profile-image-upload').files.length > 0) {
+            document.getElementById('submit-profile-image').style.display = 'block'; // Show the upload button
+        } else {
+            document.getElementById('submit-profile-image').style.display = 'none'; // Hide if no file selected
+        }
+    });
+
+// Handle the "Upload Image" button click
+    document.getElementById('submit-profile-image').addEventListener('click', async () => {
+        const access_token = localStorage.getItem("access_token");
+
+        if (!access_token) {
+            console.error('No access token found.');
+            return;
+        }
+
+        if (document.getElementById('profile-image-upload').files.length === 0) {
+        alert('Please select an image to upload.'); 
+        return;
+    }
+
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                    'Content-Type': 'multipart/form-data',
+                }
+            };
+
+            const formData = new FormData();
+            formData.append('profile_pic', document.getElementById('profile-image-upload').files[0]); 
+
+            const response = await axios.patch('http://localhost:8000/api/auth/user/profile/', formData, config);
+
+            if (response.status === 200) {
+                console.log('Profile picture updated successfully!');
+                // Update the avatar image with the new uploaded picture URL
+                document.getElementById('avatar-img').src = response.data.profile_pic
+                console.log('profile pic updated');
+
+                // Hide the upload button after successful upload
+                document.getElementById('submit-profile-image').style.display = 'none'; 
+                alert('Profile picture updated successfully!');
+            } else {
+                console.error('Error updating profile picture:', response);
+                alert('Failed to update profile picture. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while uploading your profile picture.');
+        }
+    });
+
+    // Make the pencil icon trigger the file input
+        document.getElementById('edit-profile-image').addEventListener('click', () => {
+            document.getElementById('profile-image-upload').click(); // Trigger file input click
+        });
 
     async function updateProfile(updatedUsername, updatedEmail, updatedMobile) {
         try {
@@ -189,19 +254,24 @@
             const config = {
                 headers: {
                     Authorization: `Bearer ${access_token}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data' // Changed to multipart/form-data
                 }
             };
 
-            const data = {
-                user: {
-                    mobile_number: updatedMobile,
-                    username: updatedUsername,
-                }
-            };
-            console.log("Request Data:", data);
+            const formData = new FormData();
 
-            const response = await axios.put('/api/auth/user/profile/', data, config);
+            // Append username to formData if it's being updated
+            if (updatedUsername) {
+                formData.append('user[username]', updatedUsername);
+            }
+
+            // Append mobile_number to formData if it's being updated
+            if (updatedMobile) {
+                formData.append('user[mobile_number]', updatedMobile);
+            }
+            
+            console.log("Request Data:", formData);
+            const response = await axios.patch('http://localhost:8000/api/auth/user/profile/', formData, config);
 
             if (response.status === 200) {
                 console.log("Profile updated successfully!");
@@ -211,6 +281,7 @@
                 isEditing = false;
             } else {
                 console.log("Error updating profile!");
+                console.error("Response data:", response.data);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -223,9 +294,9 @@
         toggleEditMode();
     });
 
-    window.onload = function () {
+    window.onload = function () {   
         fetchProfile();
     };
-</script>
+</script> -->
 
 {% endblock %}
